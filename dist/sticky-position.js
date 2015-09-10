@@ -1,5 +1,5 @@
 /*!
-	sticky-position 0.0.1
+	sticky-position 1.0.0
 	license: MIT
 	http://www.jacklmoore.com/sticky-position
 */
@@ -89,6 +89,7 @@
 
 			if (sticky) {
 				placeholder.style.height = rect.height + 'px';
+
 				if (computeWidth) {
 					placeholder.style.width = rect.width + 'px';
 				}
@@ -96,10 +97,7 @@
 				var parentRect = wrapper.parentNode.getBoundingClientRect();
 
 				primary.style.top = Math.min(parentRect.top + parentRect.height - rect.height, top) + 'px';
-
-				if (computeWidth) {
-					primary.style.width = rect.width + 'px';
-				}
+				primary.style.width = computeWidth ? rect.width + 'px' : '100%';
 				primary.style.left = rect.left + 'px';
 
 				stick();

@@ -60,20 +60,18 @@ export default function({
 		const sticky = rect.top < top;
 		
 		if (sticky) {
-			placeholder.style.height = rect.height+'px';
+			placeholder.style.height = rect.height + 'px';
+			
 			if (computeWidth) {
-				placeholder.style.width = rect.width+'px';
+				placeholder.style.width = rect.width + 'px';
 			}
-
-			const parentRect = wrapper.parentNode.getBoundingClientRect();
-
-			primary.style.top  = Math.min(parentRect.top + parentRect.height - rect.height, top)+'px';
-
-			if (computeWidth) {
-				primary.style.width = rect.width+'px';
-			}
-			primary.style.left = rect.left+'px';
-
+			
+			var parentRect = wrapper.parentNode.getBoundingClientRect();
+			
+			primary.style.top = Math.min(parentRect.top + parentRect.height - rect.height, top) + 'px';
+			primary.style.width = computeWidth ? rect.width+'px' : '100%';
+			primary.style.left = rect.left + 'px';
+			
 			stick();
 		} else {
 			unstick();

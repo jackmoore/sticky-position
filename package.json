@@ -1,7 +1,7 @@
 {
   "name": "sticky-position",
   "description": "A `position: sticky` polyfill that's dependency-free and does not modify the DOM tree, i.e., React-friendly.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "keywords": [
     "sticky",
     "position",
@@ -39,11 +39,5 @@
     },
     "title": "sticky-position",
     "filename": "sticky-position"
-  },
-  "scripts": {
-    "major-release": "npm version major && npm publish && git push --follow-tags",
-    "minor-release": "npm version minor && npm publish && git push --follow-tags",
-    "patch-release": "npm version patch && npm publish && git push --follow-tags",
-    "build": "node build"
   }
 }
