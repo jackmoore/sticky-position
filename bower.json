@@ -20,7 +20,7 @@
 	"ignore": [],
 	"repository": {
 		"type": "git",
-		"url": "http://github.com/jackmoore/sticky-position.git"
+		"url": "http://github.com/condenast/sticky-position.git"
 	},
 	"main": "dist/sticky-position.js",
 	"moduleType": [
