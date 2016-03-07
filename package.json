@@ -8,6 +8,9 @@
     "polyfill",
     "position: sticky"
   ],
+  "scripts": {
+    "build": "node build"
+  },
   "author": {
     "name": "Jack Moore",
     "url": "http://www.jacklmoore.com",
@@ -16,10 +19,9 @@
   "main": "dist/sticky-position.js",
   "license": "MIT",
   "homepage": "http://www.jacklmoore.com/sticky-position",
-  "demo": "http://www.jacklmoore.com/sticky-position",
   "repository": {
     "type": "git",
-    "url": "http://github.com/jackmoore/sticky-position.git"
+    "url": "http://github.com/condenast/sticky-position.git"
   },
   "dependencies": {},
   "devDependencies": {
