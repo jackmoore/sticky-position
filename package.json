@@ -1,13 +1,16 @@
 {
-  "name": "sticky-position",
+  "name": "@condenast/sticky-position",
   "description": "A `position: sticky` polyfill that's dependency-free and does not modify the DOM tree, i.e., React-friendly.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "sticky",
     "position",
     "polyfill",
     "position: sticky"
   ],
+  "scripts": {
+    "build": "node build"
+  },
   "author": {
     "name": "Jack Moore",
     "url": "http://www.jacklmoore.com",
@@ -16,10 +19,9 @@
   "main": "dist/sticky-position.js",
   "license": "MIT",
   "homepage": "http://www.jacklmoore.com/sticky-position",
-  "demo": "http://www.jacklmoore.com/sticky-position",
   "repository": {
     "type": "git",
-    "url": "http://github.com/jackmoore/sticky-position.git"
+    "url": "http://github.com/condenast/sticky-position.git"
   },
   "dependencies": {},
   "devDependencies": {
@@ -29,6 +31,8 @@
     "uglify-js": "^2.4.22"
   },
   "config": {
+    "title": "sticky-position",
+    "filename": "sticky-position",
     "bower": {
       "name": "sticky-position",
       "ignore": [],
@@ -36,8 +40,6 @@
         "amd",
         "node"
       ]
-    },
-    "title": "sticky-position",
-    "filename": "sticky-position"
+    }
   }
 }
