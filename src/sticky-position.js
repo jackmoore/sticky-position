@@ -20,7 +20,7 @@ export default function({
 
 	function stick() {
 		if (isSticky === true) return;
-		primary.style.position = 'fixed';
+		primary.style.position = 'absolute';
 		isSticky = true;
 	}
 
@@ -58,24 +58,22 @@ export default function({
 	function update() {
 		const rect = wrapper.getBoundingClientRect();
 		const sticky = rect.top < top;
-		
+
 		if (sticky) {
 			placeholder.style.height = rect.height + 'px';
-			
+
 			if (computeWidth) {
 				placeholder.style.width = rect.width + 'px';
 			}
-			
-			var parentRect = wrapper.parentNode.getBoundingClientRect();
-			
-			primary.style.top = Math.min(parentRect.top + parentRect.height - rect.height, top) + 'px';
-			primary.style.width = computeWidth ? rect.width+'px' : '100%';
-			primary.style.left = rect.left + 'px';
-			
+
+			const primaryRect = primary.getBoundingClientRect();
+			primary.style.top = Math.min((rect.height - primaryRect.height), Math.max(Math.abs(rect.top), top)) + 'px';
+			primary.style.width = computeWidth ? rect.width + 'px' : '100%';
+
 			stick();
 		} else {
 			unstick();
-		}	
+		}
 	}
 
 	function destroy() {
