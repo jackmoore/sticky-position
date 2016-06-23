@@ -10,9 +10,5 @@ Todo
 ```bash
 npm install sticky-position
 ```
-##### Install via Bower
-```bash
-bower install sticky-position
-```
 
 Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php)
