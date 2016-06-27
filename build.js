@@ -65,7 +65,7 @@ function build(code) {
 }
 
 function transform(filepath) {
-	babel.transformFile(filepath, {modules: 'umd'}, function (err,res) {
+	babel.transformFile(filepath, {}, function (err,res) {
 		if (err) {
 			return console.log(err);
 		} else {
