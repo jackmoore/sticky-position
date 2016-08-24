@@ -1,7 +1,7 @@
 {
   "name": "sticky-position",
   "description": "A `position: sticky` polyfill that's dependency-free and does not modify the DOM tree, i.e., React-friendly.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "sticky",
     "position",

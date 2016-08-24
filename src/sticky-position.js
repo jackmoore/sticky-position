@@ -36,6 +36,16 @@ export default function({
 	}
 
 	function init() {
+		var supportsPassive = false;
+		try {
+			var opts = Object.defineProperty({}, 'passive', {
+				get: function() {
+					supportsPassive = true;
+				}
+			});
+			window.addEventListener("test", null, opts);
+		} catch (e) {}
+		
 		// positioning necessary for getComputedStyle to report the correct z-index value.
 		wrapper.style.position = 'relative';
 
@@ -51,7 +61,7 @@ export default function({
 
 		update();
 		window.addEventListener('load', update);
-		window.addEventListener('scroll', update);
+		window.addEventListener('scroll', update, supportsPassive ? { passive: true } : false);
 		window.addEventListener('resize', update);
 	}
 

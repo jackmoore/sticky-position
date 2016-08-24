@@ -1,5 +1,5 @@
 /*!
-	sticky-position 1.0.0
+	sticky-position 1.0.1
 	license: MIT
 	http://www.jacklmoore.com/sticky-position
 */
@@ -64,6 +64,16 @@
 		}
 
 		function init() {
+			var supportsPassive = false;
+			try {
+				var opts = Object.defineProperty({}, 'passive', {
+					get: function get() {
+						supportsPassive = true;
+					}
+				});
+				window.addEventListener('test', null, opts);
+			} catch (e) {}
+
 			// positioning necessary for getComputedStyle to report the correct z-index value.
 			wrapper.style.position = 'relative';
 
@@ -79,7 +89,7 @@
 
 			update();
 			window.addEventListener('load', update);
-			window.addEventListener('scroll', update);
+			window.addEventListener('scroll', update, supportsPassive ? { passive: true } : false);
 			window.addEventListener('resize', update);
 		}
 
