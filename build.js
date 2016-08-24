@@ -5,24 +5,6 @@ var jshint = require('jshint').JSHINT;
 var babel = require('babel');
 var gaze = require('gaze');
 
-function writeBower() {
-	var bower = {
-		name: pkg.config.bower.name,
-		description: pkg.description,
-		dependencies: pkg.dependencies,
-		keywords: pkg.keywords,
-		authors: [pkg.author],
-		license: pkg.license,
-		homepage: pkg.homepage,
-		ignore: pkg.config.bower.ignore,
-		repository: pkg.repository,
-		main: pkg.main,
-		moduleType: pkg.config.bower.moduleType,
-	};
-	fs.writeFile('bower.json', JSON.stringify(bower, null, '\t'));
-	return true;
-}
-
 function lint(full) {
 	jshint(full.toString(), {
 		browser: true,
@@ -59,7 +41,6 @@ function build(code) {
 
 	fs.writeFile('dist/'+pkg.config.filename+'.js', header+code);
 	fs.writeFile('dist/'+pkg.config.filename+'.min.js', header+minified);
-	writeBower();
 	
 	console.log('dist built');
 }
