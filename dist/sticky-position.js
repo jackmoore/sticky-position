@@ -19,7 +19,7 @@
 	'use strict';
 
 	module.exports = function () {
-		var _ref = arguments[0] === undefined ? {} : arguments[0];
+		var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
 		var _ref$primary = _ref.primary;
 		var primary = _ref$primary === undefined ? null : _ref$primary;
@@ -29,6 +29,8 @@
 		var wrapper = _ref$wrapper === undefined ? null : _ref$wrapper;
 		var _ref$computeWidth = _ref.computeWidth;
 		var computeWidth = _ref$computeWidth === undefined ? true : _ref$computeWidth;
+		var _ref$favorPolyfill = _ref.favorPolyfill;
+		var favorPolyfill = _ref$favorPolyfill === undefined ? false : _ref$favorPolyfill;
 
 		var top = null;
 		var isSticky = false;
@@ -36,13 +38,15 @@
 		var nativeSupport = (function () {
 			if (this.isSupported !== null) {
 				return this.isSupported;
-			} else {
+			} else if (!favorPolyfill) {
 				var style = document.createElement('test').style;
 				style.cssText = ['-webkit-', '-ms-', ''].map(function (prefix) {
 					return 'position: ' + prefix + 'sticky';
 				}).join(';');
 				this.isSupported = style.position.indexOf('sticky') !== -1;
 				return this.isSupported;
+			} else {
+				return false;
 			}
 		}).bind({ isSupported: null });
 
@@ -71,7 +75,7 @@
 						supportsPassive = true;
 					}
 				});
-				window.addEventListener('test', null, opts);
+				window.addEventListener("test", null, opts);
 			} catch (e) {}
 
 			// positioning necessary for getComputedStyle to report the correct z-index value.
@@ -133,7 +137,8 @@
 
 			return {
 				update: update,
-				destroy: destroy };
+				destroy: destroy
+			};
 		}
 	};
 });

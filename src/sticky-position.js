@@ -3,18 +3,21 @@ export default function({
 	placeholder = null,
 	wrapper = null,
 	computeWidth = true,
+	favorPolyfill = false,
 } = {}){
 	let top = null;
 	let isSticky = false;
 
-	const nativeSupport = (function(){		
+	const nativeSupport = (function(){
 		if (this.isSupported !== null) {
 			return this.isSupported;
-		} else {
+		} else if (!favorPolyfill) {
 			const style = document.createElement('test').style;
 			style.cssText = ['-webkit-', '-ms-', ''].map(prefix => `position: ${prefix}sticky`).join(';');
 			this.isSupported = style.position.indexOf('sticky') !== -1;
 			return this.isSupported;
+		} else {
+			return false;
 		}
 	}).bind({isSupported: null});
 
@@ -45,7 +48,7 @@ export default function({
 			});
 			window.addEventListener("test", null, opts);
 		} catch (e) {}
-		
+
 		// positioning necessary for getComputedStyle to report the correct z-index value.
 		wrapper.style.position = 'relative';
 
@@ -68,24 +71,24 @@ export default function({
 	function update() {
 		const rect = wrapper.getBoundingClientRect();
 		const sticky = rect.top < top;
-		
+
 		if (sticky) {
 			placeholder.style.height = rect.height + 'px';
-			
+
 			if (computeWidth) {
 				placeholder.style.width = rect.width + 'px';
 			}
-			
+
 			var parentRect = wrapper.parentNode.getBoundingClientRect();
-			
+
 			primary.style.top = Math.min(parentRect.top + parentRect.height - rect.height, top) + 'px';
 			primary.style.width = computeWidth ? rect.width+'px' : '100%';
 			primary.style.left = rect.left + 'px';
-			
+
 			stick();
 		} else {
 			unstick();
-		}	
+		}
 	}
 
 	function destroy() {
@@ -94,7 +97,7 @@ export default function({
 		window.removeEventListener('resize', update);
 		unstick();
 	}
-	
+
 	if (nativeSupport()) {
 		return {
 			update(){},
